@@ -8,8 +8,13 @@
   <p>Please verify your username to view this critical security update regarding your account.</p>
   <p>This announcement will only be available for a short time. Please enter your username immediately.</p>
 
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSefGtcLuAZIhVcZ4Kr6EaVoooA-jFbeDqvlecpB8capioBTFw/viewform?embedded=true" target="_blank">
-    Click here to view the announcement
-  </a>
+  <button onclick="redirectToHackedPage()">View the Announcement</button>
+
+  <script>
+    function redirectToHackedPage() {
+      // Redirect to the "You've been hacked" page
+      window.location.href = 'youve-been-hacked.html';
+    }
+  </script>
 </body>
 </html>
