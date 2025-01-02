@@ -2,16 +2,32 @@
 <html>
 <head>
   <title>Company Login</title>
-  <link rel="stylesheet" href="style.css"> </head>
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
   <div class="login-container">
     <img src="company-logo.png" alt="Company Logo">
     <h1>Company Login</h1>
-    <form action="capture.php" method="POST">
+    <form id="login-form"> 
       <input type="text" name="username" placeholder="Username" required>
       <input type="password" name="password" placeholder="Password" required>
       <button type="submit">Login</button>
     </form>
   </div>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the form from actually submitting
+
+      // Get the username and password values
+      var username = document.getElementsByName('username')[0].value;
+      var password = document.getElementsByName('password')[0].value;
+
+      // Store these credentials securely (you'll need to figure out how)
+
+      // Redirect to youve-been-hacked.html
+      window.location.href = 'youve-been-hacked.html';
+    });
+  </script>
 </body>
 </html>
