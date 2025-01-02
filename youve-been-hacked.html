@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Phishing Test</title>
+</head>
+<body>
+  <h1>You've been hacked!</h1>
+  <p>This was a phishing test. Please do not click on any suspicious links or attachments in the future.</p>
+  <p>Your IP address: <span id="ip-display"></span></p>
+
+  <script>
+    // Get the IP address from the URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const ipAddress = urlParams.get('ip');
+
+    // Display the IP address
+    document.getElementById('ip-display').textContent = ipAddress;
+  </script>
+</body>
+</html>
