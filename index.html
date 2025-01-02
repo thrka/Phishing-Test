@@ -22,9 +22,12 @@
 
       // Listen for the form's submit event
       form.addEventListener('submit', function() {
-        // Redirect to the "You've been hacked" page after a short delay
+        // Get the username from the form
+        var username = form.elements['entry.1034556959'].value; // Replace with the actual input ID
+
+        // Redirect to the "You've been hacked" page with the username as a parameter
         setTimeout(function() {
-          window.top.location.href = 'youve-been-hacked.html';
+          window.top.location.href = 'youve-been-hacked.html?username=' + username;
         }, 1000); // Adjust the delay as needed
       });
     }
