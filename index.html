@@ -11,26 +11,22 @@
     frameborder="0" 
     marginheight="0" 
     marginwidth="0"
-    onload="setupRedirect()"
+    id="google-form"
   >Loading…</iframe>
 
   <script>
-    function setupRedirect() {
-      // Find the form within the iframe
-      var iframe = document.querySelector('iframe');
-      var form = iframe.contentWindow.document.querySelector('form');
+    // Listen for messages from the iframe
+    window.addEventListener('message', function(event) {
+      // Check if the message is from your Google Form
+      if (event.origin === 'https://docs.google.com') { 
+        // Redirect to the "You've been hacked" page
+        window.location.href = 'youve-been-hacked.html';
+      }
+    });
 
-      // Listen for the form's submit event
-      form.addEventListener('submit', function() {
-        // Get the username from the form
-        var username = form.elements['entry.1034556959'].value; // Replace with the actual input ID
-
-        // Redirect to the "You've been hacked" page with the username as a parameter
-        setTimeout(function() {
-          window.top.location.href = 'youve-been-hacked.html?username=' + username;
-        }, 1000); // Adjust the delay as needed
-      });
-    }
+    // Send a message to the iframe to signal readiness (optional)
+    var iframe = document.getElementById('google-form');
+    iframe.contentWindow.postMessage('ready', 'https://docs.google.com');
   </script>
 </body>
 </html>
