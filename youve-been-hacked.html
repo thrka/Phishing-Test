@@ -4,8 +4,17 @@
   <title>Phishing Test</title>
 </head>
 <body>
-  <h1>You've been hacked!</h1>
+  <h1>You've been hacked, <span id="username-display"></span>!</h1>
   <p>This was a phishing test. Please do not click on any suspicious links or attachments in the future.</p>
   <p>Your IP address: <span id="ip-display"></span></p>
+
+  <script>
+    // Get the username from the URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username');
+
+    // Display the username
+    document.getElementById('username-display').textContent = username;
+  </script>
 </body>
 </html>
