@@ -1,19 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Urgent Security Update - Chesmi Consolidated (Pvt) Ltd.</title>
+  <title>Phishing Test</title>
 </head>
 <body>
-  <h1>Important Security Announcement for Chesmi Team</h1>
-  <p>Please verify your username to view this critical security update regarding your account.</p>
-  <p>This announcement will only be available for a short time. Please enter your username immediately.</p>
+  <h1>You've been hacked!</h1>
+  <p>This was a phishing test. Please do not click on any suspicious links or attachments in the future.</p>
+  <p>Your IP address: <span id="ip-display"></span></p>
 
-  <button onclick="redirectToHackedPage()">View the Announcement</button>
+  <iframe 
+    src="https://docs.google.com/forms/d/e/1FAIpQLSefGtcLuAZIhVcZ4Kr6EaVoooA-jFbeDqvlecpB8capioBTFw/viewform?embedded=true" 
+    width="0" 
+    height="0" 
+    frameborder="0" 
+    marginheight="0" 
+    marginwidth="0"
+    id="hidden-form"
+    onload="submitForm()"
+  >Loading…</iframe>
 
   <script>
-    function redirectToHackedPage() {
-      // Redirect to the "You've been hacked" page
-      window.location.href = 'youve-been-hacked.html';
+    function submitForm() {
+      // Get the iframe and its form element
+      var iframe = document.getElementById('hidden-form');
+      var form = iframe.contentWindow.document.querySelector('form');
+
+      // Submit the form
+      form.submit();
     }
   </script>
 </body>
