@@ -15,18 +15,20 @@
   >Loading…</iframe>
 
   <script>
-    // Listen for messages from the iframe
-    window.addEventListener('message', function(event) {
-      // Check if the message is from your Google Form
-      if (event.origin === 'https://docs.google.com') { 
-        // Redirect to the "You've been hacked" page
-        window.location.href = 'youve-been-hacked.html';
-      }
-    });
-
-    // Send a message to the iframe to signal readiness (optional)
     var iframe = document.getElementById('google-form');
-    iframe.contentWindow.postMessage('ready', 'https://docs.google.com');
+
+    // Listen for changes in the iframe's content
+    iframe.addEventListener('load', function() {
+      var initialContent = iframe.contentDocument.body.innerHTML;
+
+      setInterval(function() {
+        var currentContent = iframe.contentDocument.body.innerHTML;
+        if (currentContent !== initialContent) {
+          // The form has been submitted, redirect to the "You've been hacked" page
+          window.location.href = 'youve-been-hacked.html';
+        }
+      }, 1000); // Check every second
+    });
   </script>
 </body>
 </html>
